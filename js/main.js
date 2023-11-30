@@ -1,3 +1,25 @@
+//will save the theme selected by the user on the local storage
+const theme = "theme";
+// the data theme attribute that is added to the html tag dynamically
+const dataTheme = "data-theme";
+// theme-tab is a class present in html. To select it, we need to use the proper CSS attribute. Here a dot since it's a class
+const themeTab = ".theme-tab";
+const switcherBtn = ".switcher-btn";
+const dark = "dark";
+const light = "light";
+const open = "open";
+const active = "active";
+
+// targeting the html element of the document page (document object)
+const root = document.documentElement;
+
+/* Theme */
+const toggleTheme = document.querySelector(themeTab);
+// will go over the document, find everything with the class ".switcher-btn" and saves it in an array that can be iterated
+const switcher = document.querySelectorAll(switcherBtn);
+// access the local storage
+const currentTheme = localStorage.getItem(theme);
+
 const modalOpen = "[data-open]";
 const modalClose = "[data-close]";
 
@@ -20,10 +42,10 @@ const isVisible = "is-visible";
 
 // Full Site Modal "open buttons"
 for (const elm of openModal) {
-    elm.addEventListener("click", function(){
-        const modalId = this.dataset.open;
-        document.getElementById(modalId).classList.add(isVisible);
-    })
+  elm.addEventListener("click", function () {
+    const modalId = this.dataset.open;
+    document.getElementById(modalId).classList.add(isVisible);
+  });
 }
 
 /*
@@ -34,10 +56,8 @@ The second .parentElement takes us from the header to the div parent element (ou
 
 */
 
-for (const elm of closeModal){
-    elm.addEventListener("click", function() {
-      this.parentElement.parentElement.classList.remove(isVisible);  
-    })
+for (const elm of closeModal) {
+  elm.addEventListener("click", function () {
+    this.parentElement.parentElement.classList.remove(isVisible);
+  });
 }
-
-
