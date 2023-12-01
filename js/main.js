@@ -29,6 +29,34 @@ const currentTheme = localStorage.getItem(theme);
 const openModal = document.querySelectorAll(modalOpen);
 const closeModal = document.querySelectorAll(modalClose);
 
+/*
+ ** grabbing all the selectors which are the ".switcher-btn" and look for the class active
+ ** if !== null, it will remove the class active
+ ** else, it will add the class active
+ */
+
+const setActive = (elm, selector) => {
+  if (document.querySelector(`${selector}.${active}`) !== null) {
+    document.querySelector(`${selector}.${active}`).classList.remove(active);
+  } else {
+    elm.classList.add(active);
+  }
+};
+
+const setTheme = (val) => {
+  // passing the value of the toggle from for (const elm of switcher). Either light or dark
+  if (val === dark) {
+    // setting up the theme
+    // setting a custom attribute to the root element of the HTML document (<html>)
+    root.setAttribute(dataTheme, dark);
+    // saving it to the local storage
+    localStorage.setItem(theme, dark);
+  } else {
+    root.setAttribute(dataTheme, light);
+    localStorage.setItem(theme, light);
+  }
+};
+
 // sets the open class to the light/dark panel
 toggleTheme.addEventListener("click", function () {
   // from the "theme-tab, we need to go up two parent elements to reach "theme-panel" where an .open class needs to be added
@@ -39,6 +67,15 @@ toggleTheme.addEventListener("click", function () {
     tab.classList.remove(open);
   }
 });
+
+for (const elm of switcher) {
+  elm.addEventListener("click", function () {
+    const toggle = this.dataset.toggle;
+    // set active state
+    setActive(elm, switcherBtn);
+    setTheme(toggle);
+  });
+}
 
 /*
 ** openModal has unique values --> about and contact
