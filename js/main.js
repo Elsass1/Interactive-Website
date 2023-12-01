@@ -10,6 +10,10 @@ const light = "light";
 const open = "open";
 const active = "active";
 
+const modalOpen = "[data-open]";
+const modalClose = "[data-close]";
+const isVisible = "is-visible";
+
 // targeting the html element of the document page (document object)
 const root = document.documentElement;
 
@@ -20,13 +24,21 @@ const switcher = document.querySelectorAll(switcherBtn);
 // access the local storage
 const currentTheme = localStorage.getItem(theme);
 
-const modalOpen = "[data-open]";
-const modalClose = "[data-close]";
-
+/* Modal */
 // same as writing "[data-open]" inside que query selector
 const openModal = document.querySelectorAll(modalOpen);
 const closeModal = document.querySelectorAll(modalClose);
-const isVisible = "is-visible";
+
+// sets the open class to the light/dark panel
+toggleTheme.addEventListener("click", function () {
+  // from the "theme-tab, we need to go up two parent elements to reach "theme-panel" where an .open class needs to be added
+  const tab = this.parentElement.parentElement;
+  if (!tab.className.includes(open)) {
+    tab.classList.add(open);
+  } else {
+    tab.classList.remove(open);
+  }
+});
 
 /*
 ** openModal has unique values --> about and contact
