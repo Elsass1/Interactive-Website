@@ -37,10 +37,11 @@ const closeModal = document.querySelectorAll(modalClose);
 
 const setActive = (elm, selector) => {
   if (document.querySelector(`${selector}.${active}`) !== null) {
+    //  the active class is first removed from any other element that might have it (within the scope of the given selector)
     document.querySelector(`${selector}.${active}`).classList.remove(active);
-  } else {
-    elm.classList.add(active);
   }
+  // is added to the specific element (elm) that needs to become active
+  elm.classList.add(active);
 };
 
 const setTheme = (val) => {
@@ -56,6 +57,29 @@ const setTheme = (val) => {
     localStorage.setItem(theme, light);
   }
 };
+
+/*
+ ** checking on page load for currentTheme to see if there is anything in local storage
+ ** if there is, we are setting the current theme
+ ** remove the active class of both buttons
+ */
+if (currentTheme) {
+  root.setAttribute(dataTheme, currentTheme);
+  switcher.forEach((btn) => {
+    btn.classList.remove(active);
+  });
+}
+
+/*
+ ** check for the current theme to see if it's the dark theme or not
+ ** if it is, set dark button to active
+ ** else set the light button to active
+ */
+if (currentTheme === dark) {
+  switcher[1].classList.add(active);
+} else {
+  switcher[0].classList.add(active);
+}
 
 // sets the open class to the light/dark panel
 toggleTheme.addEventListener("click", function () {
