@@ -15,6 +15,7 @@ const modalClose = "[data-close]";
 const isVisible = "is-visible";
 
 const dataFilter = "[data-filter]";
+const portfolioData = "[data-item]";
 
 // targeting the html element of the document page (document object)
 const root = document.documentElement;
@@ -29,6 +30,7 @@ const currentTheme = localStorage.getItem(theme);
 /* Portfolio */
 // creating a node list of every data-filter attributes in the html
 const filterLink = document.querySelectorAll(dataFilter);
+const portfolioItems = document.querySelectorAll(portfolioData);
 
 /* Modal */
 // same as writing "[data-open]" inside que query selector
@@ -111,6 +113,16 @@ for (const elm of switcher) {
 for (const link of filterLink) {
   link.addEventListener("click", function () {
     setActive(link, ".filter-link");
+    const filter = this.dataset.filter;
+    portfolioItems.forEach((card) => {
+      if (filter === "all") {
+        card.style.display = "block";
+      } else if (card.dataset.item === filter) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
   });
 }
 
