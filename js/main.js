@@ -14,6 +14,8 @@ const modalOpen = "[data-open]";
 const modalClose = "[data-close]";
 const isVisible = "is-visible";
 
+const dataFilter = "[data-filter]";
+
 // targeting the html element of the document page (document object)
 const root = document.documentElement;
 
@@ -24,12 +26,17 @@ const switcher = document.querySelectorAll(switcherBtn);
 // access the local storage
 const currentTheme = localStorage.getItem(theme);
 
+/* Portfolio */
+// creating a node list of every data-filter attributes in the html
+const filterLink = document.querySelectorAll(dataFilter);
+
 /* Modal */
 // same as writing "[data-open]" inside que query selector
 const openModal = document.querySelectorAll(modalOpen);
 const closeModal = document.querySelectorAll(modalClose);
 
 /*
+ ** elm --> each individual elements in the node list
  ** grabbing all the selectors which are the ".switcher-btn" and look for the class active
  ** if !== null, it will remove the class active
  ** else, it will add the class active
@@ -98,6 +105,12 @@ for (const elm of switcher) {
     // set active state
     setActive(elm, switcherBtn);
     setTheme(toggle);
+  });
+}
+
+for (const link of filterLink) {
+  link.addEventListener("click", function () {
+    setActive(link, ".filter-link");
   });
 }
 
