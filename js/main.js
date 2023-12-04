@@ -31,6 +31,7 @@ const currentTheme = localStorage.getItem(theme);
 // creating a node list of every data-filter attributes in the html
 const filterLink = document.querySelectorAll(dataFilter);
 const portfolioItems = document.querySelectorAll(portfolioData);
+const searchBox = document.querySelector("#search");
 
 /* Modal */
 // same as writing "[data-open]" inside que query selector
@@ -109,6 +110,20 @@ for (const elm of switcher) {
     setTheme(toggle);
   });
 }
+// e = event object
+searchBox.addEventListener("keyup", (e) => {
+  //capturing the value
+  const searchInput = e.target.value.toLowerCase().trim();
+
+  portfolioItems.forEach((card) => {
+    // item could be web or ui for example
+    if (card.dataset.item.includes(searchInput)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
 
 for (const link of filterLink) {
   link.addEventListener("click", function () {
