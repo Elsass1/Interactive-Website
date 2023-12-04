@@ -174,3 +174,54 @@ for (const elm of closeModal) {
     this.parentElement.parentElement.classList.remove(isVisible);
   });
 }
+
+const portfolioCards = [
+  {
+    item: "web",
+    imgSource: "./assets/images/portfolio-1.jpg",
+    category: "Web Development",
+    title: "Food Website",
+  },
+  {
+    item: "web",
+    imgSource: "./assets/images/portfolio-2.jpg",
+    category: "Web Development",
+    title: "Skate Website",
+  },
+  {
+    item: "web",
+    imgSource: "./assets/images/portfolio-3.jpg",
+    category: "Web Development",
+    title: "Food Website",
+  },
+  {
+    item: "ui",
+    imgSource: "./assets/images/portfolio-4.jpg",
+    category: "UI Design",
+    title: "Cool Design",
+  },
+  {
+    item: "app",
+    imgSource: "./assets/images/portfolio-5.jpg",
+    category: "App Development",
+    title: "Game App",
+  },
+  {
+    item: "app",
+    imgSource: "./assets/images/portfolio-6.jpg",
+    category: "App Development",
+    title: "Gambling App",
+  },
+  {
+    item: "app",
+    imgSource: "./assets/images/portfolio-7.jpg",
+    category: "App Development",
+    title: "Money App",
+  },
+  {
+    item: "ui",
+    imgSource: "./assets/images/portfolio-8.jpg",
+    category: "UI Design",
+    title: "Fantastic Design",
+  },
+];
