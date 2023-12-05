@@ -171,7 +171,7 @@ The second .parentElement takes us from the header to the div parent element (ou
 
 for (const elm of closeModal) {
   elm.addEventListener("click", function () {
-    this.parentElement.parentElement.classList.remove(isVisible);
+    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
   });
 }
 
