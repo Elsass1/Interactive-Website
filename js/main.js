@@ -153,7 +153,7 @@ for (const link of filterLink) {
 ** .classList is grabbing in html the "full-site-modal page-block" class list and we say add "isVisible"
 */
 
-// Full Site Modal "open buttons"
+// Modal/Full Site Modal "open buttons"
 for (const elm of openModal) {
   elm.addEventListener("click", function () {
     const modalId = this.dataset.open;
@@ -175,7 +175,22 @@ for (const elm of closeModal) {
   });
 }
 
-const portfolioCards = [
+// Modal
+document.addEventListener("click", (e) => {
+  console.log(e.target, document.querySelector(".modal.is-visible"));
+  if (e.target === document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
+
+document.addEventListener("keyup", (e) => {
+  console.log(e.key);
+  if (e.key === "Escape") {
+    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
+
+/* const portfolioCards = [
   {
     item: "web",
     imgSource: "./assets/images/portfolio-1.jpg",
@@ -261,3 +276,4 @@ portfolioCards.forEach((portfolioCard) => {
   card.appendChild(cardBody);
   portfolioCardContainer.appendChild(card);
 });
+ */
