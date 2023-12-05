@@ -225,3 +225,39 @@ const portfolioCards = [
     title: "Fantastic Design",
   },
 ];
+
+const portfolioCardContainer = document.getElementById(
+  "portfolio-card-container"
+);
+
+portfolioCards.forEach((portfolioCard) => {
+  const card = document.createElement("div");
+  card.className = "portfolio-card";
+  card.setAttribute("data-item", portfolioCard.item);
+
+  const cardBody = document.createElement("div");
+  cardBody.className = "card-body";
+
+  const image = document.createElement("img");
+  image.src = portfolioCard.imgSource;
+  image.alt = "portfolio icon";
+
+  const link = document.createElement("a");
+  link.href = "#";
+  link.className = "card-popup-box";
+
+  const categoryDiv = document.createElement("div");
+  categoryDiv.textContent = portfolioCard.category;
+
+  const h3Title = document.createElement("h3");
+  h3Title.textContent = portfolioCard.title;
+
+  link.appendChild(categoryDiv);
+  link.appendChild(h3Title);
+
+  cardBody.appendChild(image);
+  cardBody.appendChild(link);
+
+  card.appendChild(cardBody);
+  portfolioCardContainer.appendChild(card);
+});
