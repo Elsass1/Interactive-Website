@@ -269,13 +269,13 @@ portfolioInfo.forEach((item) => {
 document.addEventListener("click", function (event) {
   // Check if the clicked element or any of its parents have the 'data-open' attribute
   for (
-    let targetElement = event.target;
-    targetElement && targetElement !== this;
-    targetElement = targetElement.parentElement
+    let targetElement = event.target; // the element that was actually clicked
+    targetElement && targetElement !== this; // targetElement is not null or undefined && targetElement is not the same as this (here the document)
+    targetElement = targetElement.parentElement //   if the clicked element doesn’t have the data-open attribute, the loop will check its parent
   ) {
     if (targetElement.matches("[data-open]")) {
-      const modalId = targetElement.dataset.open;
-      const modal = document.getElementById(modalId);
+      const modalId = targetElement.dataset.open; // gets the value of the data-open attribute, which is expected to be the ID of the modal to open
+      const modal = document.getElementById(modalId); // finds the modal element using its ID
       if (modal) {
         modal.classList.add(isVisible);
         break; // Stop the loop once the modal is found and opened
