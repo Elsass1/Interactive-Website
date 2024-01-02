@@ -1,3 +1,5 @@
+import { portfolioInfo } from "./data.js";
+
 //will save the theme selected by the user on the local storage
 const theme = "theme";
 // the data theme attribute that is added to the html tag dynamically
@@ -142,7 +144,7 @@ for (const link of filterLink) {
 }
 
 /*
-** openModal (in main.js const modalOpen = "[data-open]";) has unique values --> about and contact and the modals
+** openModal has unique values --> about and contact
 ** elm is the individual element of each item of openModal
 ** By using a regular function (and not an =>), it gives access to .this
 ** .this refers to the parent element, which is the open button in the list item (elm)
@@ -187,5 +189,97 @@ document.addEventListener("keyup", (e) => {
   console.log(e.key);
   if (e.key === "Escape") {
     document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
+
+const portfolioCardContainer = document.getElementById(
+  "portfolio-card-container"
+);
+
+portfolioInfo.forEach((portfolioCard) => {
+  const card = document.createElement("div");
+  card.className = "portfolio-card";
+  card.setAttribute("data-item", portfolioCard.dataItem);
+  card.setAttribute("data-open", portfolioCard.dataOpen);
+
+  const cardBody = document.createElement("div");
+  cardBody.className = "card-body";
+
+  const image = document.createElement("img");
+  image.src = portfolioCard.imgSource;
+  image.alt = "portfolio icon";
+
+  const link = document.createElement("a");
+  link.href = "#";
+  link.className = "card-popup-box";
+
+  const categoryDiv = document.createElement("div");
+  categoryDiv.textContent = portfolioCard.category;
+
+  const h3Title = document.createElement("h3");
+  h3Title.textContent = portfolioCard.title;
+
+  link.appendChild(categoryDiv);
+  link.appendChild(h3Title);
+
+  cardBody.appendChild(image);
+  cardBody.appendChild(link);
+
+  card.appendChild(cardBody);
+  portfolioCardContainer.appendChild(card);
+});
+
+function createModal(item) {
+  return `
+      <div id="${item.modal.id}" class="modal" data-animation="slideInOutTop">
+        <div class="modal-dialog">
+          <header class="modal-header">
+            <h3>${item.modal.header}</h3>
+            <i class="fas fa-times" data-close></i>
+          </header>
+          <div class="modal-body">
+            <div class="img-wrapper">
+              <img
+                src="${item.imgSource}"
+                alt="portfolio image"
+              />
+            </div>
+            <div class="text-wrapper">
+              <p><strong>${item.modal.title}</strong></p>
+              <p>
+                ${item.modal.paragraph1}
+              </p>
+              <p>
+              ${item.modal.paragraph2}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+`;
+}
+
+const modalContainer = document.getElementById("portfolio-card-container");
+
+portfolioInfo.forEach((item) => {
+  const modalHTML = createModal(item);
+  modalContainer.innerHTML += modalHTML;
+});
+
+document.addEventListener("click", function (event) {
+  // Check if the clicked element or any of its parents have the 'data-open' attribute
+  for (
+    let targetElement = event.target;
+    targetElement && targetElement !== this;
+    targetElement = targetElement.parentElement
+  ) {
+    if (targetElement.matches("[data-open]")) {
+      const modalId = targetElement.dataset.open;
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add(isVisible);
+        break; // Stop the loop once the modal is found and opened
+      }
+    }
   }
 });
