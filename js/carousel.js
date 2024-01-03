@@ -1,29 +1,27 @@
 const slides = document.querySelectorAll(".review-item");
 const buttons = document.querySelectorAll(".slide-ctrl-container button");
 
-// initializing the current index
+// initializing the index
 let current = Math.floor(Math.random() * slides.length);
 let next = current < slides.length - 1 ? current + 1 : 0;
 let prev = current > 0 ? current - 1 : slides.length - 1;
 
-/* create eventListener for prev/next */
-// gotToNext()
-// gotToPrev()
-// updateIndexes(param)
-// updateCSS()
-
-// -- decide how to call prev/next
-// -- update variables
-// --- [current] = newIndex
-// --- [next] current + 1 : 0
-// --- [prev] current - 1 : length - 1
-// update the css
-
-// number being passed here is the new current index
+const update = () => {
+  // remove the classes from the original indexes
+  slides.forEach((slide) => {
+    slide.classList.remove("active", "prev", "next");
+  });
+  // applying the classes to the new indexes
+  slides[current].classList.add("active");
+  slides[prev].classList.add("prev");
+  slides[next].classList.add("next");
+};
+// number being passed here is the new current index (updating the indexes)
 const goToNum = (number) => {
   current = number; // reassigning current
   next = current < slides.length - 1 ? current + 1 : 0; // reassigning next
   prev = current > 0 ? current - 1 : slides.length - 1; // reassigning prev
+  update(); // update the slides
 };
 
 // decide what number is going to be passed in inside the function
@@ -37,3 +35,5 @@ for (let i = 0; i < buttons.length; i += 1) {
     i === 0 ? goToPrev() : goToNext()
   );
 }
+
+update();
