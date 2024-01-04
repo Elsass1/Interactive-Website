@@ -264,7 +264,7 @@
               <img src="./assets/images/img4.jpg" alt="head shot" />
             </div>
             <div class="about-text">
-              <h2>Brice Fromm</h2>
+              <h2 class="header-md">Brice Fromm</h2>
               <p>
                 Full Stack Developer based in Alsace, France. Nobody can see how
                 elegant my code is... So I snapshot it, frame it and hand it on
@@ -311,16 +311,27 @@
             <i class="fas fa-times" data-close></i>
           </header>
           <div class="modal-body">
-            <div class="img-wrapper">
-              <img src="./assets/images/img4.jpg" alt="head shot" />
+            <div class="contact-text">
+              <h2 class="header-md">Brice Fromm</h2>
+              <div>Have a project or question? Send me a message</div>
+              <div>I will reply within 48 hours.</div>
             </div>
-            <h2>Brice Fromm</h2>
-            <p>text 1</p>
-            <p>text 2</p>
-            <div>
-              <div>Email Me:</div>
-              <a href="mailto:brice@email.com">brice@email.com</a>
-            </div>
+            <form>
+              <input name="name" type="text" placeholder="Name" />
+              <input name="email" type="email" placeholder="Email" />
+              <input name="subject" type="text" placeholder="Subject" />
+              <textarea
+                name="message"
+                cols="30"
+                rows="3"
+                placeholder="Write your message..."
+              ></textarea>
+              <input
+                type="submit"
+                value="Send"
+                class="btn btn-primary round-pill"
+              />
+            </form>
           </div>
         </div>
       </div>
