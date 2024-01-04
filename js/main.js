@@ -187,3 +187,14 @@ document.addEventListener("keyup", (e) => {
     document.querySelector(".modal.is-visible").classList.remove(isVisible);
   }
 });
+
+const elmsDisplayed = getComputedStyle(root).getPropertyValue(
+  "--marquee-elms-displayed"
+);
+const marqueeContent = document.querySelector("ul.marquee-content"); //nodeList of all our elements
+
+root.style.setProperty("--marquee-elms", marqueeContent.children.length); //this is counting all the child elements (the li) which are in the html and give the length of it
+
+for (let i = 0; i < elmsDisplayed; i += 1) {
+  marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true)); //cloning one of the child's node
+}
