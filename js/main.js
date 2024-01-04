@@ -196,5 +196,6 @@ const marqueeContent = document.querySelector("ul.marquee-content"); //nodeList 
 root.style.setProperty("--marquee-elms", marqueeContent.children.length); //this is counting all the child elements (the li) which are in the html and give the length of it
 
 for (let i = 0; i < elmsDisplayed; i += 1) {
-  marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true)); //cloning one of the child's node
+  // making a clone of the children inside the ul marquee content
+  marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true)); //cloning one of the child's node. Each child is an icon inside of marqueeContent
 }

@@ -2,7 +2,8 @@
   background: var(--bg);
 }
 
-#about .modal-body #contact .modal-body {
+#about .modal-body,
+#contact .modal-body {
   padding: 2rem;
   flex-wrap: wrap;
 }
@@ -106,5 +107,12 @@
     transform: translateX(
       calc(-1 * var(--marquee-elm-width) * var(--marquee-elms))
     );
+  }
+}
+@media (max-width: 991px) {
+  #about .img-wrapper,
+  #about .about-text {
+    flex: initial;
+    margin: 0 auto;
   }
 }
